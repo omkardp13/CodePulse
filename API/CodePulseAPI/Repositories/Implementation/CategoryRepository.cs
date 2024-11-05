@@ -1,6 +1,7 @@
 ﻿using CodePulseAPI.Data;
 using CodePulseAPI.Models.Domain;
 using CodePulseAPI.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodePulseAPI.Repositories.Implementation
 {
@@ -17,6 +18,11 @@ namespace CodePulseAPI.Repositories.Implementation
            await dbContext.SaveChangesAsync();
 
             return category;
+        }
+
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            return await dbContext.Category.ToListAsync();
         }
     }
 }
