@@ -20,6 +20,20 @@ namespace CodePulseAPI.Repositories.Implementation
             return category;
         }
 
+        public async Task<Category?> DeleteAsync(Guid id)
+        {
+            var existingCategory = await dbContext.Category.FirstOrDefaultAsync(x=>x.Id==id);
+
+            if (existingCategory is null)
+            {
+                return null;
+            }
+
+            dbContext.Category.Remove(existingCategory);
+            await dbContext.SaveChangesAsync();
+            return existingCategory;
+        }
+
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await dbContext.Category.ToListAsync();
