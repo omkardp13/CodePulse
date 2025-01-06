@@ -23,6 +23,7 @@ export class AddCategoryComponent implements OnDestroy {
       urlHandle:''
      };
   }
+  
   ngOnDestroy(): void
   {
      this.addCategorySubscription?.unsubscribe();  
